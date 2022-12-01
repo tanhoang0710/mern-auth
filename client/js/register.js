@@ -5,7 +5,7 @@ const handleRegister = () => {
 	const password = document.getElementById('password').value;
 	// 2. Gui value tu client den server
 	axios
-		.post('http://localhost:5000/api/auth/users', {
+		.post('http://localhost:5000/api/auth/register', {
 			username,
 			email,
 			password,

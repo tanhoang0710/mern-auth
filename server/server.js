@@ -1,9 +1,13 @@
 const express = require('express');
 const connectDatabase = require('./Services/ConnectDbService');
 const userRouter = require('./Router/UserRoute');
+const cors = require('cors');
 
 const app = express();
 const PORT = 5000;
+
+// middleware apply cors
+app.use(cors());
 
 // connect database
 connectDatabase();

@@ -1,4 +1,5 @@
 const UserModel = require('../Models/UserModel');
+const bcrypt = require('bcrypt');
 
 exports.register = async (req, res) => {
 	try {
@@ -6,7 +7,7 @@ exports.register = async (req, res) => {
 
 		const newUser = await UserModel.create({
 			username,
-			password,
+			password: bcrypt.hashSync(password, 10),
 			email,
 			role: 'regular',
 		});

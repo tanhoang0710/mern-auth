@@ -9,6 +9,8 @@ const PORT = 5000;
 
 // middleware apply cors
 app.use(cors());
+// middleware get info client by req.body
+app.use(express.json());
 
 // connect database
 connectDatabase();

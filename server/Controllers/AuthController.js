@@ -21,3 +21,27 @@ exports.register = async (req, res) => {
 		console.log('error', error);
 	}
 };
+
+exports.login = async (req, res) => {
+	try {
+		const { email, password } = req.body;
+		// check email
+
+		const user = await UserModel.findOne({ email });
+		if (!user) return res.status(400).json('invalid email or password');
+
+		// check password
+		const isValidPassword = bcrypt.compareSync(password, user.password);
+		if (!isValidPassword)
+			return res.status(400).json('invalid email or password');
+
+		return res.json({
+			status: 'success',
+			data: {
+				data: user,
+			},
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};

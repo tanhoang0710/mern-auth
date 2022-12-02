@@ -14,8 +14,8 @@ const handleRegister = async () => {
 				password,
 			}
 		);
-		console.log('🚀 ~ file: register.js:14 ~ response', response);
-		if (response.status === 201) {
+		console.log('🚀 ~ file: register.js:14 ~ res', res);
+		if (res.status === 201) {
 			window.location.href = '/client/login.html';
 		}
 	} catch (error) {

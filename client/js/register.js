@@ -6,14 +6,11 @@ const handleRegister = async () => {
 	// 2. Gui value tu client den server
 
 	try {
-		const res = await axios.post(
-			'http://localhost:5000/api/auth/register',
-			{
-				username,
-				email,
-				password,
-			}
-		);
+		const res = await axios.post('/api/auth/register', {
+			username,
+			email,
+			password,
+		});
 		console.log('🚀 ~ file: register.js:14 ~ res', res);
 		if (res.status === 201) {
 			window.location.href = '/client/login.html';

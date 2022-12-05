@@ -39,17 +39,13 @@ const getListUser = async () => {
 			},
 		};
 
-		const res = await axios.get(
-			'http://localhost:5000/auth/admin/user',
-			configHeader
-		);
+		const res = await axios.get('/auth/admin/user', configHeader);
 
 		showListUser(res);
 	} catch (error) {
-		console.log(error);
 		// solution1
 		if (error.response.status === 401) {
-			window.location.href('/client/login.html');
+			window.location.href = '/client/login.html';
 		}
 		// call refresh token
 		// token expired->redirect to admin

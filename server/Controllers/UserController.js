@@ -21,6 +21,10 @@ exports.getListUser = async (req, res, next) => {
 		}
 	} catch (error) {
 		// gui ma loi client de client biet refresh tokem
+		if (error instanceof jwt.TokenExpiredError) {
+			return res.status(401).json('Token Expired');
+		}
+		// logs error
 		console.log(error);
 	}
 };

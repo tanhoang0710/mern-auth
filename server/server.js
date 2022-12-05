@@ -18,7 +18,7 @@ app.use(express.json());
 connectDatabase();
 
 // middleware roter
-app.use('/users', userRouter);
+app.use('/auth/admin', userRouter);
 app.use('/api/auth', authRouter);
 
 app.listen(PORT, () => {

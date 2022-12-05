@@ -10,7 +10,7 @@ exports.getListUser = async (req, res, next) => {
 		// 2. verify token
 		const decodeJwt = jwt.verify(accessToken, process.env.SECRET_JWT);
 		if (decodeJwt) {
-			const users = await UserModel.find();
+			const users = await UserModel.find().select('-password');
 
 			res.status(200).json({
 				status: 'success',

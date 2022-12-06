@@ -52,4 +52,8 @@ const getListUser = async () => {
 	}
 };
 
+const handleAddUser = () => {
+	window.location.href = '/client/create_user.html';
+};
+
 getListUser();

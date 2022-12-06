@@ -7,7 +7,7 @@ const handleSubmitAddUser = async () => {
 	// 2. Gui value tu client den server
 
 	try {
-		const res = await axios.post('/api/auth/user/create', {
+		const res = await axios.post('auth/admin/user/create', {
 			username,
 			email,
 			password,

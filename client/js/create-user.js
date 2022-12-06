@@ -14,8 +14,8 @@ const handleSubmitAddUser = async () => {
 			role,
 		});
 		console.log('🚀 ~ file: register.js:14 ~ res', res);
-		if (res.status === 201) {
-			// window.location.href = '/client/login.html';
+		if (res.status === 200) {
+			window.location.href = '/client/admin_page.html';
 		}
 	} catch (error) {
 		// log error

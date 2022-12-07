@@ -37,7 +37,14 @@ const getListUser = async () => {
 	try {
 		const res = await axios.get('/auth/admin/user');
 		showListUser(res);
+		// show nameuser login
+		const accessToken = localStorage.getItem('accessToken');
+		// decode lay ra thong tin payload
+
+		const payloadDecoded = jwt_decode(accessToken);
+		document.querySelector('.username').innerText = payloadDecoded.username;
 	} catch (error) {
+		console.log('🚀 ~ file: admin-page.js:47 ~ getListUser ~ error', error);
 		// solution1
 		if (error.response.status === 401) {
 			window.location.href = '/client/login.html';
@@ -50,6 +57,10 @@ const getListUser = async () => {
 async function handleDeleteUser(idUser) {
 	try {
 		const res = await axios.delete(`/auth/admin/user/delete/${idUser}`);
+
+		if (res.status === 200) {
+			window.location.reload();
+		}
 		// showListUser(res)
 	} catch (error) {
 		if (error.response.status === 401) {
@@ -60,6 +71,11 @@ async function handleDeleteUser(idUser) {
 
 const handleAddUser = () => {
 	window.location.href = '/client/create_user.html';
+};
+
+const handleLogoutUser = () => {
+	localStorage.removeItem('accessToken');
+	window.location.href = '/client/login.html';
 };
 
 getListUser();

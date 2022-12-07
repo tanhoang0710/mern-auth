@@ -21,7 +21,9 @@ const showListUser = (res) => {
 				${user.email}
 			</td>
 			<td>
-				Delete
+				<button type="button" id="${
+					user._id
+				}" class="btn btn-danger" onclick="handleDeleteUser(this.id)">Delete</button>
 			</td>
 		</tr>`)
 	);
@@ -33,14 +35,7 @@ const showListUser = (res) => {
 
 const getListUser = async () => {
 	try {
-		const configHeader = {
-			headers: {
-				Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-			},
-		};
-
-		const res = await axios.get('/auth/admin/user', configHeader);
-
+		const res = await axios.get('/auth/admin/user');
 		showListUser(res);
 	} catch (error) {
 		// solution1
@@ -51,6 +46,17 @@ const getListUser = async () => {
 		// token expired->redirect to admin
 	}
 };
+
+async function handleDeleteUser(idUser) {
+	try {
+		const res = await axios.delete(`/auth/admin/user/delete/${idUser}`);
+		// showListUser(res)
+	} catch (error) {
+		if (error.response.status === 401) {
+			window.location.href = '/client/login.html';
+		}
+	}
+}
 
 const handleAddUser = () => {
 	window.location.href = '/client/create_user.html';

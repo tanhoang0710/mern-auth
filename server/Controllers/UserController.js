@@ -34,3 +34,17 @@ exports.postUser = async (req, res) => {
 		},
 	});
 };
+
+exports.deleteUser = async (req, res) => {
+	const { userId } = req.params;
+
+	// 4. delete user
+	const user = await UserModel.findByIdAndRemove(userId);
+
+	res.status(200).json({
+		status: 'success',
+		data: {
+			user,
+		},
+	});
+};

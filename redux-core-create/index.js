@@ -1,13 +1,17 @@
 // store -> state duoc luu tru tren store
 // Khi chung ta muon thay doi state tren store thi cung ta thuc hien dispatch action
 
-const createStore = () => {
+const reducer = (state, action) => {
+	if (action.type === 'increment') return (state += action.payload);
+	if (action.type === 'decrement') return (state -= action.payload);
+};
+
+const createStore = (reducer) => {
 	let state = 0;
 
 	const dispatch = (action) => {
 		//logic here -- thay doi state theo action
-		if (action.type === 'increment') state += action.payload;
-		if (action.type === 'decrement') state -= action.payload;
+		state = reducer(state, action);
 	};
 
 	const getState = () => {
@@ -20,7 +24,7 @@ const createStore = () => {
 	};
 };
 
-const store = createStore();
+const store = createStore(reducer);
 // o trong component lay state tren store va render
 console.log('🚀 ~ file: index.js:21 ~ store', store.getState());
 

@@ -6,8 +6,10 @@ const reducer = (state, action) => {
 	if (action.type === 'decrement') return (state -= action.payload);
 };
 
-const createStore = (reducer) => {
-	let state = 0;
+const initalState = 0;
+
+const createStore = (reducer, initalState) => {
+	let state = initalState;
 
 	const dispatch = (action) => {
 		//logic here -- thay doi state theo action
@@ -24,7 +26,7 @@ const createStore = (reducer) => {
 	};
 };
 
-const store = createStore(reducer);
+const store = createStore(reducer, initalState);
 // o trong component lay state tren store va render
 console.log('🚀 ~ file: index.js:21 ~ store', store.getState());
 
